@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integra – Cocinas Integrales a la medida</title>
+  <meta name="description" content="Integra: diseño, fabricación e instalación de cocinas integrales y muebles a la medida.">
+  <link rel="icon" href="img/logo/integra_Logo_SF.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- 1. Header -->
+  <header id="header" class="site-header">
+    <a href="#inicio" class="logo">
+      <img src="img/logo/integra_Logo_SF.png" alt="Integra Cocinas Integrales">
+    </a>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" aria-label="Menú principal">
+      <ul id="menu">
+        <li><a href="#trabajos">Trabajos</a></li>
+        <li><a href="#melaminas">Melaminas</a></li>
+        <li><a href="#muebles">Muebles</a></li>
+        <li><a href="#zonas">Zonas</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#contacto" class="nav-cta">Cotizar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 2. Portada -->
+    <section id="inicio" class="hero">
+      <div class="container hero-inner">
+        <p class="eyebrow">Diseño · Fabricación · Instalación</p>
+        <h1>Cocinas integrales a la medida de tu hogar</h1>
+        <p class="hero-sub">Diseñamos, fabricamos e instalamos tu cocina con materiales de calidad y acabados que duran.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary js-wa" href="https://wa.me/527776103610" target="_blank" rel="noopener">Cotiza por WhatsApp</a>
+          <a class="btn btn-ghost" href="#trabajos">Ver trabajos</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Cifras -->
+    <section id="cifras" class="cifras" aria-label="Nuestra experiencia">
+      <div class="container cifras-grid" id="cifras-grid"></div>
+    </section>
+
+    <!-- 4. Trabajos realizados -->
+    <section id="trabajos" class="section">
+      <div class="container">
+        <header class="section-head reveal">
+          <h2>Trabajos realizados</h2>
+          <p>Algunas de las cocinas que hemos diseñado e instalado. Haz clic en una foto para verla en grande.</p>
+        </header>
+        <div class="gallery" id="gallery"></div>
+      </div>
+    </section>
+
+    <!-- 5. Catálogo de melaminas -->
+    <section id="melaminas" class="section alt">
+      <div class="container">
+        <header class="section-head reveal">
+          <h2>Catálogo de melaminas</h2>
+          <p>Elige el color y la textura de tu cocina. Los tonos en pantalla son aproximados: te llevamos muestras físicas.</p>
+        </header>
+        <div class="filters" id="melamina-filters" role="group" aria-label="Filtrar melaminas"></div>
+        <div class="swatches" id="swatches"></div>
+      </div>
+    </section>
+
+    <!-- 6. Muebles -->
+    <section id="muebles" class="section">
+      <div class="container">
+        <header class="section-head reveal">
+          <h2>Muebles a la medida</h2>
+          <p>Además de cocinas, fabricamos muebles para toda la casa con la misma calidad.</p>
+        </header>
+        <div class="cards" id="muebles-grid"></div>
+      </div>
+    </section>
+
+    <!-- 7. Zonas -->
+    <section id="zonas" class="section alt">
+      <div class="container">
+        <header class="section-head reveal">
+          <h2>Zonas donde trabajamos</h2>
+          <p>Llevamos tu proyecto a estos estados de la República. ¿No ves el tuyo? Escríbenos.</p>
+        </header>
+        <ul class="chips" id="zonas-list"></ul>
+      </div>
+    </section>
+
+    <!-- 8. Sobre nosotros -->
+    <section id="nosotros" class="section">
+      <div class="container nosotros-grid">
+        <div class="reveal">
+          <h2>Sobre nosotros</h2>
+          <p>En <strong>Integra</strong> creemos que la cocina es el corazón de la casa. Por eso cada proyecto lo hacemos a la medida: escuchamos cómo vive tu familia, aprovechamos cada centímetro y cuidamos los detalles hasta el último tornillo.</p>
+          <p>Trabajamos con melaminas y herrajes de calidad, y te acompañamos desde la primera visita hasta que tu cocina queda lista para usarse.</p>
+        </div>
+        <ol class="steps reveal">
+          <li><span class="step-n">1</span><div><h3>Visita y medición</h3><p>Vamos a tu casa, tomamos medidas y escuchamos lo que necesitas.</p></div></li>
+          <li><span class="step-n">2</span><div><h3>Diseño</h3><p>Te presentamos la propuesta con colores, materiales y precio.</p></div></li>
+          <li><span class="step-n">3</span><div><h3>Fabricación</h3><p>Fabricamos cada pieza en nuestro taller con medidas exactas.</p></div></li>
+          <li><span class="step-n">4</span><div><h3>Instalación</h3><p>Instalamos, ajustamos y entregamos tu cocina limpia y lista.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section id="testimonios" class="section alt">
+      <div class="container">
+        <header class="section-head reveal">
+          <h2>Lo que dicen nuestros clientes</h2>
+        </header>
+        <div class="testimonials" id="testimonios-grid"></div>
+      </div>
+    </section>
+
+    <!-- 9. Contacto -->
+    <section id="contacto" class="section contacto">
+      <div class="container contacto-grid">
+        <div class="reveal">
+          <h2>Cotiza tu cocina</h2>
+          <p>Cuéntanos qué necesitas y te respondemos por WhatsApp. La visita y medición no tienen compromiso.</p>
+          <ul class="contact-info" id="contact-info"></ul>
+          <a class="btn btn-primary js-wa" href="https://wa.me/527776103610" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        </div>
+        <form class="contact-form reveal" id="contact-form">
+          <label>Nombre
+            <input type="text" name="nombre" required autocomplete="name">
+          </label>
+          <label>Ciudad
+            <input type="text" name="ciudad" autocomplete="address-level2">
+          </label>
+          <label>¿Qué te interesa?
+            <select name="interes">
+              <option>Cocina integral</option>
+              <option>Clóset o vestidor</option>
+              <option>Centro de entretenimiento</option>
+              <option>Mueble de baño</option>
+              <option>Otro mueble</option>
+            </select>
+          </label>
+          <label>Mensaje
+            <textarea name="mensaje" rows="4" placeholder="Medidas aproximadas, colores que te gustan, etc."></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary">Enviar por WhatsApp</button>
+          <p class="form-note">Se abrirá WhatsApp con tu mensaje listo para enviar.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- 10. Footer -->
+  <footer id="footer" class="site-footer">
+    <div class="container footer-inner">
+      <img class="footer-logo" src="img/logo/integra_Logo_SF.png" alt="Integra Cocinas Integrales">
+      <ul class="social" id="social"></ul>
+      <p class="copy">© <span id="year">2026</span> Integra – Cocinas Integrales. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Lightbox de la galería -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada" hidden>
+    <button class="lb-close" aria-label="Cerrar">×</button>
+    <button class="lb-prev" aria-label="Anterior">‹</button>
+    <figure>
+      <img id="lb-img" alt="">
+      <figcaption id="lb-caption"></figcaption>
+    </figure>
+    <button class="lb-next" aria-label="Siguiente">›</button>
+  </div>
+
+  <!-- Burbuja flotante de WhatsApp -->
+  <a class="whatsapp-float js-wa" href="https://wa.me/527776103610" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+    <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3Zm0 23.7c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7Zm5.9-8c-.3-.2-1.9-1-2.2-1-.3-.1-.5-.2-.7.1l-1 1.3c-.2.2-.4.2-.7.1a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.7s1.2 3.2 1.3 3.4c.2.2 2.3 3.5 5.6 4.9 2.1.9 2.9 1 4 .8.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5l-.6-.4Z"/></svg>
+  </a>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
