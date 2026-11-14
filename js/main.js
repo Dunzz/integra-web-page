@@ -42,14 +42,17 @@
   if (gallery) {
     gallery.innerHTML = trabajos
       .map((t, i) => `
-        <button class="gallery-item reveal" data-index="${i}" aria-label="Ver foto: ${esc(t.titulo)}">
-          <div class="ph">${img(t.imagen, `${t.titulo} en ${t.lugar}`)}</div>
-          <div class="gallery-info">
-            <h3>${esc(t.titulo)}</h3>
-            <span class="place">${esc(t.lugar)}</span>
-            <p>${esc(t.descripcion)}</p>
-          </div>
-        </button>`)
+        <article class="gallery-item reveal">
+          <button class="gallery-open" data-index="${i}" aria-label="Ver foto: ${esc(t.titulo)}">
+            <div class="ph">${img(t.imagen, `${t.titulo} en ${t.lugar}`)}</div>
+            <div class="gallery-info">
+              <h3>${esc(t.titulo)}</h3>
+              <span class="place">${esc(t.lugar)}</span>
+              <p>${esc(t.descripcion)}</p>
+            </div>
+          </button>
+          ${t.modelo3d ? `<button class="btn-3d" data-index="${i}" aria-label="Ver ${esc(t.titulo)} en 3D"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 2 3 7v10l9 5 9-5V7l-9-5Zm0 0v10m0 0 9-5m-9 5-9-5m9 5v10"/></svg>Ver en 3D</button>` : ""}
+        </article>`)
       .join("");
   }
 
@@ -67,7 +70,9 @@
   const closeLb = () => { lb.hidden = true; document.body.classList.remove("no-scroll"); lastFocus && lastFocus.focus(); };
   if (gallery && lb) {
     gallery.addEventListener("click", (e) => {
-      const item = e.target.closest(".gallery-item");
+      const b3d = e.target.closest(".btn-3d");
+      if (b3d) return openVisor3D(trabajos[Number(b3d.dataset.index)]);
+      const item = e.target.closest(".gallery-open");
       if (item) openLb(Number(item.dataset.index));
     });
     lb.querySelector(".lb-close").addEventListener("click", closeLb);
@@ -80,6 +85,53 @@
       if (e.key === "ArrowLeft") showItem(current - 1);
       if (e.key === "ArrowRight") showItem(current + 1);
     });
+  }
+
+  // ---------- Visor 3D (Gaussian Splat) ----------
+  // El código del visor (js/visor3d.js) y sus librerías se descargan solo al abrirlo.
+  const v3d = $("#visor3d");
+  let visorMod = null, v3dFocus = null;
+  async function openVisor3D(item) {
+    if (!v3d || !item) return;
+    v3dFocus = document.activeElement;
+    v3d.hidden = false;
+    document.body.classList.add("no-scroll");
+    v3d.querySelector(".v3d-close").focus();
+    if (location.protocol === "file:") {
+      v3d.querySelector(".v3d-title").textContent = item.titulo || "Vista 3D";
+      v3d.querySelector(".v3d-loader").hidden = false;
+      v3d.querySelector(".v3d-progress").hidden = true;
+      v3d.querySelector(".v3d-msg").innerHTML =
+        "El modelo 3D no se puede abrir con doble clic.<br><small>Para probarlo en tu computadora usa <b>probar-3d.bat</b>. Ya publicada en internet funciona normal.</small>";
+      return;
+    }
+    try {
+      visorMod = visorMod || (await import("./visor3d.js"));
+      visorMod.abrir(item);
+    } catch (err) {
+      console.error(err);
+      v3d.querySelector(".v3d-progress").hidden = true;
+      v3d.querySelector(".v3d-msg").innerHTML = "No se pudo cargar el visor 3D.<br><small>Revisa tu conexión a internet.</small>";
+    }
+  }
+  function closeVisor3D() {
+    if (!v3d || v3d.hidden) return;
+    if (document.fullscreenElement) document.exitFullscreen();
+    visorMod && visorMod.cerrar();
+    v3d.hidden = true;
+    document.body.classList.remove("no-scroll");
+    v3dFocus && v3dFocus.focus();
+  }
+  if (v3d) {
+    v3d.querySelector(".v3d-close").addEventListener("click", closeVisor3D);
+    v3d.querySelector(".v3d-reset").addEventListener("click", () => visorMod && visorMod.reiniciarVista());
+    const fullBtn = v3d.querySelector(".v3d-full");
+    if (!document.fullscreenEnabled) fullBtn.hidden = true;
+    fullBtn.addEventListener("click", () => {
+      if (document.fullscreenElement) document.exitFullscreen();
+      else v3d.requestFullscreen().catch(() => {});
+    });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !v3d.hidden && !document.fullscreenElement) closeVisor3D(); });
   }
 
   // ---------- Melaminas ----------

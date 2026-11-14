@@ -126,3 +126,17 @@ Sitio 100 % estático: se abre con doble clic en `index.html`, sin instalar nada
 - Enviar links de redes sociales (Facebook, Instagram, TikTok, etc.).
 - Cifras reales y lista real de estados.
 - Fotos de trabajos, melaminas y muebles.
+
+---
+
+## 8. Modelos 3D (Gaussian Splat)
+
+Un trabajo de la galería puede tener botón **"Ver en 3D"**. Abre un visor a pantalla completa que solo descarga el modelo cuando se pulsa, así la página sigue cargando rápido.
+
+- Visor: three.js + Spark (sparkjs.dev), cargados desde internet (CDN). Código en `js/visor3d.js`.
+- Modelo actual: `models/cocina.splat` (30.7 MB, ~960 mil splats). Se convirtió del `splat.ply` original (236 MB) a formato `.splat` compacto, quitando splats casi invisibles (opacidad < 2 %).
+- Para agregar un modelo a otro trabajo, en `js/data.js` agrega `modelo3d: "models/archivo.splat"` a ese trabajo. Si no le pones `vista3d`, usa una vista por defecto que probablemente haya que ajustar.
+- `vista3d` (opcional): `objetivo` (punto al que mira), `camara` (posición inicial), `rotacion` en grados (nerfstudio = `[-90, 0, 0]`), `giroHorizontal` / `giroVertical` (grados que se puede girar), `zoomMin` / `zoomMax`.
+- Formatos que lee el visor: `.splat`, `.ply`, `.spz`, `.ksplat`, `.sog`. Para la web conviene `.splat` o `.spz` (más ligeros).
+
+**Importante:** con doble clic (`file://`) el navegador no deja cargar el modelo. Para probarlo en la computadora usa **`probar-3d.bat`**: abre la página en `http://localhost:8080`. Ya publicada en internet funciona normal.

@@ -1,2 +1,13 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Modelos 3D e imágenes: siempre binarios (sin conversión de saltos de línea)
+*.splat binary
+*.ply binary
+*.spz binary
+*.ksplat binary
+*.sog binary
+*.glb binary
+*.png binary
+*.jpg binary
+*.webp binary

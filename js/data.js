@@ -34,7 +34,12 @@ const INTEGRA_DATA = {
 
   // ---------- Galería de trabajos realizados (EJEMPLO) ----------
   trabajos: [
-    { imagen: U("photo-1556911220-bff31c812dba"), titulo: "Cocina con isla",      lugar: "Cuernavaca, Morelos",  descripcion: "Isla central con barra para desayunar y cubierta de cuarzo." },
+    { imagen: U("photo-1556911220-bff31c812dba"), titulo: "Cocina con isla",      lugar: "Cuernavaca, Morelos",  descripcion: "Isla central con barra para desayunar y cubierta de cuarzo.",
+      // Modelo 3D (Gaussian Splat). Opcional: si un trabajo no tiene, no sale el botón "Ver en 3D".
+      modelo3d: "models/cocina.splat",
+      // vista3d: vista inicial y límites de giro (ajustados para este modelo; normalmente no se tocan)
+      vista3d: { objetivo: [0, 0.05, 0.36], camara: [-2.11, 0.4, 1.51], rotacion: [-90, 0, 0],
+                 giroHorizontal: 18, giroVertical: 15, zoomMin: 0.55, zoomMax: 1.25 } },
     { imagen: U("photo-1588854337236-6889d631faa8"), titulo: "Cocina en L",          lugar: "Ciudad de México",     descripcion: "Gabinetes en tono oscuro con cubierta de mármol y piso de madera." },
     { imagen: U("photo-1556912173-3bb406ef7e77"), titulo: "Cocina abierta",       lugar: "Jiutepec, Morelos",    descripcion: "Integrada al comedor, con acabados en madera nogal." },
     { imagen: U("photo-1484154218962-a197022b5858"), titulo: "Cocina moderna",    lugar: "Estado de México",     descripcion: "Diseño minimalista con iluminación LED bajo gabinete." },

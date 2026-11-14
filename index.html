@@ -12,6 +12,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Librerías del visor 3D (solo se descargan al pulsar "Ver en 3D") -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.187.0/examples/jsm/",
+      "@sparkjsdev/spark": "https://cdn.jsdelivr.net/npm/@sparkjsdev/spark@2.4.0/dist/spark.module.js"
+    }
+  }
+  </script>
 </head>
 <body>
 
@@ -179,6 +190,25 @@
       <figcaption id="lb-caption"></figcaption>
     </figure>
     <button class="lb-next" aria-label="Siguiente">›</button>
+  </div>
+
+  <!-- Visor 3D (Gaussian Splat) -->
+  <div class="visor3d" id="visor3d" role="dialog" aria-modal="true" aria-labelledby="v3d-title" hidden>
+    <div class="v3d-top">
+      <h2 class="v3d-title" id="v3d-title">Vista 3D</h2>
+      <div class="v3d-actions">
+        <button class="v3d-btn v3d-reset" aria-label="Volver a la vista inicial" title="Vista inicial">⟲</button>
+        <button class="v3d-btn v3d-full" aria-label="Pantalla completa" title="Pantalla completa">⛶</button>
+        <button class="v3d-btn v3d-close" aria-label="Cerrar visor 3D" title="Cerrar (Esc)">×</button>
+      </div>
+    </div>
+    <div class="v3d-stage"></div>
+    <div class="v3d-loader">
+      <img src="img/logo/integra_Logo_SF.png" alt="" class="v3d-logo">
+      <p class="v3d-msg">Cargando cocina en 3D…</p>
+      <div class="v3d-progress"><div class="v3d-bar"><span></span></div><span class="v3d-pct">0%</span></div>
+    </div>
+    <p class="v3d-hint">Arrastra para girar · Rueda o pellizca para acercar</p>
   </div>
 
   <!-- Burbuja flotante de WhatsApp -->
