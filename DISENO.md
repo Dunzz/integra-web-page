@@ -140,3 +140,24 @@ Un trabajo de la galería puede tener botón **"Ver en 3D"**. Abre un visor a pa
 - Formatos que lee el visor: `.splat`, `.ply`, `.spz`, `.ksplat`, `.sog`. Para la web conviene `.splat` o `.spz` (más ligeros).
 
 **Importante:** con doble clic (`file://`) el navegador no deja cargar el modelo. Para probarlo en la computadora usa **`probar-3d.bat`**: abre la página en `http://localhost:8080`. Ya publicada en internet funciona normal.
+
+### Convertir un splat nuevo (convertir-splat.bat)
+
+1. Exporta el Gaussian Splat como `.ply` (en nerfstudio: `ns-export gaussian-splat`; sale un `splat.ply`).
+2. **Arrastra el `.ply` y suéltalo encima de `convertir-splat.bat`** (en la carpeta de la página). Puedes soltar varios a la vez.
+3. Se abre una ventana que muestra el avance y, al final, cuántos puntos quedaron, el peso y dónde se guardó (`models/<nombre>.splat`). Si el archivo se llama de forma genérica (`splat.ply`), se guarda como `modelo.splat`, `modelo-2.splat`, etc. **Renómbralo** a algo claro, ej. `cocina-cuernavaca.splat`.
+4. La ventana también muestra el texto para `js/data.js`. Pégalo dentro del trabajo de la galería que quieras, por ejemplo:
+   ```js
+   { imagen: "img/trabajos/cocina-02.jpg", titulo: "Cocina en L", lugar: "Cuernavaca, Morelos", descripcion: "...",
+     modelo3d: "models/cocina-cuernavaca.splat",
+     vista3d: { objetivo: [0.03, 0.14, 0.36], camara: [0.03, 0.44, 2.66], rotacion: [-90, 0, 0] } },
+   ```
+5. Prueba con `probar-3d.bat`. La vista inicial sugerida es aproximada: si no queda bien de frente, pídele a Claude que la ajuste.
+6. Haz commit y push.
+
+Detalles:
+- Necesita Python con `numpy` (ya están en esta computadora). Si falta numpy, el convertidor lo avisa: `python -m pip install numpy`.
+- Quita puntos con opacidad < 2 % y, si hay más de 1.5 millones, conserva los 1.5 millones más importantes (máx. ~48 MB). Guarda solo el color base (sin reflejos dependientes del ángulo), que es lo que lee el formato `.splat`.
+- Avisa si el archivo no es `.ply`, si no es un Gaussian Splat (por ejemplo una nube de puntos normal) o si el resultado pasa de 95 MB (GitHub no acepta más de 100 MB).
+- Los `.ply` originales están en `.gitignore`: no se suben a GitHub aunque los copies a la carpeta.
+- La carpeta `herramientas/` se publica junto con la página, pero solo contiene el script de conversión; es inofensivo y nadie lo ve si no escribe la dirección exacta.

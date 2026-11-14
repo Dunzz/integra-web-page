@@ -1,0 +1,2 @@
+# Los .ply originales son muy pesados para GitHub (usa convertir-splat.bat)
+*.ply

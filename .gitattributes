@@ -11,3 +11,6 @@
 *.png binary
 *.jpg binary
 *.webp binary
+
+# Scripts de Windows con saltos de linea CRLF
+*.bat text eol=crlf
